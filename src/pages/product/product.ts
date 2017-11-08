@@ -1,3 +1,4 @@
+import { CreateProductPage } from './../create-product/create-product';
 import { Component } from '@angular/core';
 import { LoadingController, Events, App, ModalController, AlertController, MenuController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProductListModel, ProductService, ShopModel } from "@ngcommerce/core";
@@ -79,5 +80,29 @@ export class ProductPage {
 
   selected(items) {
     this.navCtrl.push(ProductDetailPage, items);
+  }
+  addProductModal() {
+    let productModal = this.modalCtrl.create(CreateProductPage, { 'keys': this.chkformimg });
+    productModal.onDidDismiss(data => {
+      if (data && data.name && data.name !== undefined) {
+        this.loading.present();
+        this.productService.createProduct(data).then((resq) => {
+          this.loading.dismiss();
+          this.getProduct(this.shop);
+        }, (err) => {
+          this.loading.dismiss();
+          alert(JSON.parse(err._body).message);
+        });
+      }
+    });
+    productModal.present();
+  }
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+    this.ionViewWillEnter();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 1000);
   }
 }
