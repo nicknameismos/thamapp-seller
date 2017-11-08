@@ -1,3 +1,6 @@
+import { NotificationPage } from './../pages/notification/notification';
+import { ProductPage } from './../pages/product/product';
+import { OrderPage } from './../pages/order/order';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -26,7 +29,11 @@ import { HttpModule } from '@angular/http';
     HomePage,
     TabsPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    OrderPage,
+    ProductPage,
+    NotificationPage
+    
   ],
   imports: [
     BrowserModule,
@@ -42,7 +49,10 @@ import { HttpModule } from '@angular/http';
     HomePage,
     TabsPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    OrderPage,
+    ProductPage,
+    NotificationPage
   ],
   providers: [
     StatusBar,
