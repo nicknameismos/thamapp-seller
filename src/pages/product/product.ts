@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LoadingController, Events, App, ModalController, AlertController, MenuController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProductListModel, ProductService, ShopModel } from "@ngcommerce/core";
 import { LoginPage } from '../login/login';
+import { ProductDetailPage } from '../product-detail/product-detail';
 
 /**
  * Generated class for the ProductPage page.
@@ -76,4 +77,7 @@ export class ProductPage {
     })
   }
 
+  selected(items) {
+    this.navCtrl.push(ProductDetailPage, items);
+  }
 }
