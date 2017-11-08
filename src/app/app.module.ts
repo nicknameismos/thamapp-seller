@@ -1,4 +1,5 @@
 import { IonUploadImagesComponent } from './../components/ion-upload-image/ion-upload-image';
+import { CreateProductPage } from './../pages/create-product/create-product';
 import { NotificationPage } from './../pages/notification/notification';
 import { ProductPage } from './../pages/product/product';
 import { OrderPage } from './../pages/order/order';
@@ -24,6 +25,9 @@ import { HttpModule } from '@angular/http';
 import { CreateshopPage } from '../pages/createshop/createshop';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { Base64 } from '@ionic-native/base64';
+import { Ionic2RatingModule } from 'ionic2-rating';
+import { ProductDetailPage } from '../pages/product-detail/product-detail';
+
 
 @NgModule({
   declarations: [
@@ -40,11 +44,17 @@ import { Base64 } from '@ionic-native/base64';
     CreateshopPage,
     IonFormShopComponent,
     IonUploadImagesComponent,
-    IonUploadImageComponent
+    IonUploadImageComponent,
+    IonListProductComponent,
+    ProductDetailPage,
+    IonFormProductComponent,
+    IonDetailProductComponent,
+    CreateProductPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    Ionic2RatingModule,
     IonicModule.forRoot(MyApp),
     EcommerceCoreModule.forRoot('https://thamturakit.herokuapp.com/api/')
   ],
@@ -63,7 +73,9 @@ import { Base64 } from '@ionic-native/base64';
     CreateshopPage,
     IonFormShopComponent,
     IonUploadImagesComponent,
-    IonUploadImageComponent
+    IonUploadImageComponent,
+    ProductDetailPage,
+    CreateProductPage
   ],
   providers: [
     StatusBar,
