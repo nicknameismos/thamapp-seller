@@ -1,3 +1,4 @@
+import { LoginPage } from '../login/login';
 import { Component } from '@angular/core';
 import { NavController, App, Events, LoadingController } from 'ionic-angular';
 import { HomeService, ShopModel } from '@ngcommerce/core';
@@ -63,7 +64,7 @@ export class HomePage {
       this.flag = true;
       loading.dismiss();
       // alert(JSON.parse(err._body).message);
-      // this.app.getRootNav().setRoot(LoginPage);
+      this.app.getRootNav().setRoot(LoginPage);
     })
   }
 

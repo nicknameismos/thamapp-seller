@@ -20,6 +20,9 @@ import { EcommerceCoreModule, IonSegmentOrderComponent, IonListOrderComponent, I
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
+import { CreateshopPage } from '../pages/createshop/createshop';
+import { ImagePicker } from '@ionic-native/image-picker';
+import { Base64 } from '@ionic-native/base64';
 
 @NgModule({
   declarations: [
@@ -32,8 +35,10 @@ import { HttpModule } from '@angular/http';
     RegisterPage,
     OrderPage,
     ProductPage,
-    NotificationPage
-    
+    NotificationPage,
+    CreateshopPage,
+    IonFormShopComponent,
+    IonUploadImageComponent
   ],
   imports: [
     BrowserModule,
@@ -52,12 +57,17 @@ import { HttpModule } from '@angular/http';
     RegisterPage,
     OrderPage,
     ProductPage,
-    NotificationPage
+    NotificationPage,
+    CreateshopPage,
+    IonFormShopComponent,
+    IonUploadImageComponent
   ],
   providers: [
     StatusBar,
     SplashScreen,
     OneSignal,
+    ImagePicker,
+    Base64,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
