@@ -23,6 +23,8 @@ import { HttpModule } from '@angular/http';
 import { CreateshopPage } from '../pages/createshop/createshop';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { Base64 } from '@ionic-native/base64';
+import { Ionic2RatingModule } from 'ionic2-rating';
+
 
 @NgModule({
   declarations: [
@@ -38,11 +40,13 @@ import { Base64 } from '@ionic-native/base64';
     NotificationPage,
     CreateshopPage,
     IonFormShopComponent,
-    IonUploadImageComponent
+    IonUploadImageComponent,
+    IonListProductComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    Ionic2RatingModule,
     IonicModule.forRoot(MyApp),
     EcommerceCoreModule.forRoot('https://thamturakit.herokuapp.com/api/')
   ],
