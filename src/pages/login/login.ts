@@ -36,7 +36,7 @@ export class LoginPage {
         // window.localStorage.removeItem('jjuserbuyer');
         // this.loadingCtrl.onLoading();
         this.authenService.signIn(this.credential).then(data => {
-          // window.localStorage.setItem('jjuserbuyer', JSON.stringify(data));
+          window.localStorage.setItem('thamappbuyer', JSON.stringify(data));
     
           if (this.platform.is('cordova')) {
             this.oneSignal.getIds().then((data) => {
