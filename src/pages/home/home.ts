@@ -50,7 +50,15 @@ export class HomePage {
 
     });
   }
+  ionViewWillEnter() {
+    console.log('ionViewDidLoad HomePage');
 
+    let shop = JSON.parse(window.localStorage.getItem("shop"));
+    this.shop = shop;
+    if (this.shop) {
+      this.getOrder(this.shop);
+    }
+  }
   getOrder(shop) {
     let loading = this.loadingCtrl.create();
     loading.present();
