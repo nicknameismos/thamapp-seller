@@ -1,0 +1,1 @@
+# thamapp-seller
