@@ -40,11 +40,11 @@ export class CreateshopPage {
     if (!data.name) {
       alert('Please Enter Your Name!');
       return;
-    } else if (!data.image || this.pImages.length === 0) {
+    } else if (!data.image && this.pImages.length === 0) {
       this.resImg = './assets/image/noimage.png';
     }
     data.image = this.resImg;
-    console.log(data.image);
+    // alert(data.image);
     this.viewCtrl.dismiss(data);
   }
   canceldissmis() {
