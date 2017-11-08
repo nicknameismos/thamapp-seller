@@ -6,7 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from './../pages/login/login';
 import { UserModel, ShopService } from '@ngcommerce/core';
-
+import * as firebase from 'firebase';
 @Component({
   templateUrl: 'app.html'
 })

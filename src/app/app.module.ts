@@ -1,3 +1,4 @@
+import { IonUploadImagesComponent } from './../components/ion-upload-image/ion-upload-image';
 import { NotificationPage } from './../pages/notification/notification';
 import { ProductPage } from './../pages/product/product';
 import { OrderPage } from './../pages/order/order';
@@ -38,6 +39,7 @@ import { Base64 } from '@ionic-native/base64';
     NotificationPage,
     CreateshopPage,
     IonFormShopComponent,
+    IonUploadImagesComponent,
     IonUploadImageComponent
   ],
   imports: [
@@ -60,6 +62,7 @@ import { Base64 } from '@ionic-native/base64';
     NotificationPage,
     CreateshopPage,
     IonFormShopComponent,
+    IonUploadImagesComponent,
     IonUploadImageComponent
   ],
   providers: [
