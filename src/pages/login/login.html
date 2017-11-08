@@ -7,12 +7,36 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>login</ion-title>
+    <ion-title>Login</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Username</ion-label>
+      <ion-input type="text" [(ngModel)]="credential.username"></ion-input>
+    </ion-item>
 
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input type="password" [(ngModel)]="credential.password"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-row>
+    <ion-col>
+      <button ion-button block (click)="login()" block>Login</button>
+    </ion-col>
+    <ion-col>
+      <button ion-button block (click)="register()" block>Register</button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <button ion-button block (click)="loginfb()" block>login with Facebook</button>
+    </ion-col>
+  </ion-row>
 </ion-content>
