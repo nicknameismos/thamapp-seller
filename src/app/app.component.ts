@@ -30,6 +30,7 @@ export class MyApp {
       splashScreen.hide();
     });
     this.workaroundSideMenu();
+    this.configFirebase();
   }
 
   initLoadStoreList() {
@@ -71,5 +72,17 @@ export class MyApp {
   isShow(id) {
     let shopId = window.localStorage.getItem('shop') ? JSON.parse(window.localStorage.getItem('shop'))._id : null;
     return shopId === id;
+  }
+
+  configFirebase() {
+    let config = {
+      apiKey: "AIzaSyActRoM7SJW0h20HTM9GrkwJICC4moOzC8",
+      authDomain: "green-vintage.firebaseapp.com",
+      databaseURL: "https://green-vintage.firebaseio.com",
+      projectId: "green-vintage",
+      storageBucket: "green-vintage.appspot.com",
+      messagingSenderId: "317596581774"
+    };
+    firebase.initializeApp(config);
   }
 }
