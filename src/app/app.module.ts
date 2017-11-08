@@ -27,6 +27,8 @@ import { ImagePicker } from '@ionic-native/image-picker';
 import { Base64 } from '@ionic-native/base64';
 import { Ionic2RatingModule } from 'ionic2-rating';
 import { ProductDetailPage } from '../pages/product-detail/product-detail';
+import { ListshopPage } from '../pages/listshop/listshop';
+import { ShopDetailPage } from '../pages/shop-detail/shop-detail';
 
 
 @NgModule({
@@ -49,7 +51,12 @@ import { ProductDetailPage } from '../pages/product-detail/product-detail';
     ProductDetailPage,
     IonFormProductComponent,
     IonDetailProductComponent,
-    CreateProductPage
+    CreateProductPage,
+    IonFormProfileComponent,
+    ListshopPage,
+    IonListShopComponent,
+    ShopDetailPage,
+    IonDetailShopComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +82,10 @@ import { ProductDetailPage } from '../pages/product-detail/product-detail';
     IonUploadImagesComponent,
     IonUploadImageComponent,
     ProductDetailPage,
-    CreateProductPage
+    CreateProductPage,
+    ListshopPage,
+    IonListShopComponent,
+    ShopDetailPage
   ],
   providers: [
     StatusBar,
