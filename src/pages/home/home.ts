@@ -58,6 +58,10 @@ export class HomePage {
     if (this.shop) {
       this.getOrder(this.shop);
     }
+    let user = JSON.parse(window.localStorage.getItem("thamappseller"));
+    if (!user) {
+      this.app.getRootNav().setRoot(LoginPage);
+    }
   }
   getOrder(shop) {
     let loading = this.loadingCtrl.create();

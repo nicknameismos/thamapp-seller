@@ -30,6 +30,7 @@
         "@ionic/storage": "2.1.1",
         "@ngcommerce/core": "^1.4.95",
         "com-badrit-base64": "^0.2.0",
+        "chart.js": "^2.6.0",
         "com.synconset.imagepicker": "^2.1.10",
         "cordova-android": "^6.2.3",
         "cordova-plugin-device": "^1.1.4",

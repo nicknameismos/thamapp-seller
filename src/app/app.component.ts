@@ -1,9 +1,10 @@
+import { TabsPage } from './../pages/tabs/tabs';
 import { Component } from '@angular/core';
 import { Platform, MenuController, LoadingController, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { TabsPage } from '../pages/tabs/tabs';
+// import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from './../pages/login/login';
 import { UserModel, ShopService } from '@ngcommerce/core';
 import * as firebase from 'firebase';
@@ -11,7 +12,7 @@ import * as firebase from 'firebase';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = LoginPage;
+  rootPage:any = TabsPage;
   user = {} as UserModel;
   private shopList: Array<any> = [];
   constructor(

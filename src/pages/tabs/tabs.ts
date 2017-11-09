@@ -10,6 +10,7 @@ import { ModalController, LoadingController } from 'ionic-angular';
 import { CreateshopPage } from '../createshop/createshop';
 
 @Component({
+  selector: 'page-tabs',
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
@@ -42,7 +43,7 @@ export class TabsPage {
       }
     }, err => {
       // loading.dismiss();
-      alert(JSON.parse(err._body).message);
+      // alert(JSON.parse(err._body).message);
     });
   }
   createShopModal() {

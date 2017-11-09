@@ -27,7 +27,7 @@ export class EditProfilePage {
     public loadingCtrl: LoadingController
     // public loadingCtrl: LoadingProvider
   ) {
-    this.editProfile = JSON.parse(window.localStorage.getItem('thamappbuyer'));
+    this.editProfile = JSON.parse(window.localStorage.getItem('thamappseller'));
     console.log(this.editProfile);
   }
 
@@ -40,7 +40,7 @@ export class EditProfilePage {
     this.loading.present();
 
     this.authenService.updateUser(this.editProfile).then((resp) => {
-      window.localStorage.setItem('thamappbuyer', JSON.stringify(resp));
+      window.localStorage.setItem('thamappseller', JSON.stringify(resp));
       this.navCtrl.pop();
       this.loading.dismiss();
     }, (error) => {
