@@ -20,21 +20,21 @@ export class AboutPage {
     public loadingCtrl: LoadingController, 
     public events: Events
   ) {
-    this.user = JSON.parse(window.localStorage.getItem('thamappbuyer'));    
+    this.user = JSON.parse(window.localStorage.getItem('thamappseller'));    
   }
   ionViewWillEnter() {
     let loading = this.loadingCtrl.create();
     loading.present();
     this.workaroundSideMenu();
     let shop = JSON.parse(window.localStorage.getItem("shop"));
-    this.user = JSON.parse(window.localStorage.getItem('thamappbuyer'));
+    this.user = JSON.parse(window.localStorage.getItem('thamappseller'));
     this.shop = shop;
     console.log('ionViewDidLoad AccountPage');
     loading.dismiss();
   }
 
   logout(e) {
-    window.localStorage.removeItem('thamappbuyer');
+    window.localStorage.removeItem('thamappseller');
     window.localStorage.removeItem('shop');
 
 
