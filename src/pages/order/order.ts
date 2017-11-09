@@ -1,3 +1,4 @@
+import { OrderDetailPage } from './../order-detail/order-detail';
 import { LoginPage } from './../login/login';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController, App, Events, LoadingController } from 'ionic-angular';
@@ -39,6 +40,7 @@ export class OrderPage {
   ];
   shop = {} as ShopModel;
   flag = true;
+
   loading = this.loadingCtrl.create();
 
   constructor(
@@ -91,6 +93,13 @@ export class OrderPage {
       this.app.getRootNav().setRoot(LoginPage);
     });
   }
+
+  selectedItem(e) {
+    console.log(e);
+    this.navCtrl.push(OrderDetailPage, e);
+    // alert(e);
+  }
+
   doRefresh(refresher) {
     console.log('Begin async operation', refresher);
     this.ionViewWillEnter();

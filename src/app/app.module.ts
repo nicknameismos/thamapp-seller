@@ -1,3 +1,4 @@
+import { OrderDetailPage } from './../pages/order-detail/order-detail';
 import { EditProfilePage } from './../pages/edit-profile/edit-profile';
 import { IonUploadImagesComponent } from './../components/ion-upload-image/ion-upload-image';
 import { CreateProductPage } from './../pages/create-product/create-product';
@@ -58,7 +59,12 @@ import { ShopDetailPage } from '../pages/shop-detail/shop-detail';
     IonListShopComponent,
     ShopDetailPage,
     IonDetailShopComponent,
-    EditProfilePage
+    EditProfilePage,
+    IonListOrderComponent,
+    IonSegmentOrderComponent,
+    IonDetailOrderComponent,
+    IonOrdersComponent,
+    OrderDetailPage
   ],
   imports: [
     BrowserModule,
@@ -88,7 +94,8 @@ import { ShopDetailPage } from '../pages/shop-detail/shop-detail';
     ListshopPage,
     IonListShopComponent,
     ShopDetailPage,
-    EditProfilePage
+    EditProfilePage,
+    OrderDetailPage
   ],
   providers: [
     StatusBar,
