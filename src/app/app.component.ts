@@ -34,7 +34,7 @@ export class MyApp {
   }
 
   initLoadStoreList() {
-    this.user = JSON.parse(window.localStorage.getItem('thamappbuyer'));
+    this.user = JSON.parse(window.localStorage.getItem('thamappseller'));
 
     if (this.user) {
       let loading = this.loadingCtrl.create();
@@ -43,7 +43,7 @@ export class MyApp {
         this.shopList = data;
         loading.dismiss();
       }).catch(err => {
-        window.localStorage.removeItem('thamappbuyer');
+        window.localStorage.removeItem('thamappseller');
         window.localStorage.removeItem('shop');
         this.rootPage = LoginPage;
         loading.dismiss();
