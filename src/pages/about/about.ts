@@ -1,3 +1,4 @@
+import { EditProfilePage } from './../edit-profile/edit-profile';
 import { Component } from '@angular/core';
 import { NavController, App, NavParams, ModalController, MenuController, LoadingController, Events } from 'ionic-angular';
 import { ShopModel } from '@ngcommerce/core';
@@ -56,7 +57,7 @@ export class AboutPage {
   }
 
   editProfile(e) {
-    // this.navCtrl.push(EditProfilePage);
+    this.navCtrl.push(EditProfilePage);
   }
 
   private workaroundSideMenu() {
