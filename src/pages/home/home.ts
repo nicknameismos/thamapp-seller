@@ -1,3 +1,4 @@
+import { LoadingProvider } from './../../providers/loading/loading';
 import { LoginPage } from '../login/login';
 import { Component, ViewChild } from '@angular/core';
 import { NavController, App, Events, LoadingController } from 'ionic-angular';
@@ -28,14 +29,15 @@ export class HomePage {
   user: any;
   shop = {} as ShopModel;
   flag = true;
-  loading = this.loadingCtrl.create();
+  // loading = this.loadingCtrl.create();
 
   constructor(
     public navCtrl: NavController,
     public homeService: HomeService,
-    public loadingCtrl: LoadingController,
+    // public loadingCtrl: LoadingController,
     public app: App,
-    public events: Events
+    public events: Events,
+    public loadingCtrl: LoadingProvider
   ) {
     this.subnoti();
   }
@@ -78,7 +80,8 @@ export class HomePage {
     });
   }
   getOrder(shop) {
-    this.loading.present();
+    this.loadingCtrl.onLoading();
+
     this.homeService.getHomeSeller(shop._id).then(data => {
 
       this.homeData = data;
@@ -145,11 +148,11 @@ export class HomePage {
         });
       }
       this.flag = true;
-      this.loading.dismissAll();
+      this.loadingCtrl.dismissAll();
 
     }, err => {
       this.flag = true;
-      this.loading.dismissAll();
+      this.loadingCtrl.dismissAll();
 
       // alert(JSON.parse(err._body).message);
       this.app.getRootNav().setRoot(LoginPage);

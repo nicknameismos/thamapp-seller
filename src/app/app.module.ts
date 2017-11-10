@@ -31,6 +31,7 @@ import { Ionic2RatingModule } from 'ionic2-rating';
 import { ProductDetailPage } from '../pages/product-detail/product-detail';
 import { ListshopPage } from '../pages/listshop/listshop';
 import { ShopDetailPage } from '../pages/shop-detail/shop-detail';
+import { LoadingProvider } from '../providers/loading/loading';
 
 
 @NgModule({
@@ -103,7 +104,8 @@ import { ShopDetailPage } from '../pages/shop-detail/shop-detail';
     OneSignal,
     ImagePicker,
     Base64,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    LoadingProvider
   ]
 })
 export class AppModule { }
