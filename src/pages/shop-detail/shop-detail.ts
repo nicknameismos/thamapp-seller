@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, AlertController, LoadingController } from 'ionic-angular';
 import { ShopModel, ShopService } from '@ngcommerce/core';
 import { CreateshopPage } from '../createshop/createshop';
+import { LoadingProvider } from '../../providers/loading/loading';
 
 /**
  * Generated class for the ShopDetailPage page.
@@ -22,7 +23,7 @@ export class ShopDetailPage {
     public navParams: NavParams,
     public shopService: ShopService,
     public modalCtrl: ModalController,
-    public loadingCtrl: LoadingController,
+    public loadingCtrl: LoadingProvider,
     public alertCtrl: AlertController
   ) {
   }
@@ -32,15 +33,14 @@ export class ShopDetailPage {
     this.init();
   }
   init() {
-    let loading = this.loadingCtrl.create();
-    loading.present();
+    this.loadingCtrl.onLoading();
     this.shopService.getShopByID(this.navParams.data._id)
       .then(data => {
         this.shop = data;
         console.log(this.shop);
-        loading.dismiss();
+        this.loadingCtrl.dismiss();
       }, err => {
-        loading.dismiss();
+        this.loadingCtrl.dismiss();
       });
   }
   alertdeleteShop(item) {
@@ -71,38 +71,36 @@ export class ShopDetailPage {
   }
 
   deleteShop(item) {
-    let loading = this.loadingCtrl.create();
-    loading.present();
+    this.loadingCtrl.onLoading();
     this.shopService.deleteShopByID(item._id).then((data) => {
       this.navCtrl.pop();
-      loading.dismiss();
+      this.loadingCtrl.dismiss();
     }, (err) => {
       alert(JSON.parse(err._body).message);
-      loading.dismiss();
+      this.loadingCtrl.dismiss();
     });
   }
   updateShop(e) {
     let shopModal = this.modalCtrl.create(CreateshopPage, e);
     shopModal.onDidDismiss(data => {
       if (data && data.name && data.name !== undefined) {
-        let loading = this.loadingCtrl.create();
-        loading.present();
+        this.loadingCtrl.onLoading();
         this.shopService.updateShopByID(data).then((resq) => {
           // loading.dismiss();
           // this.loadingCtrl.onLoading();
           this.shopService.getShopByID(this.navParams.data._id).then(data => {
             console.log(data);
-            loading.dismiss();
+            this.loadingCtrl.dismiss();
             this.shop = data;
             // this.loadingCtrl.dismiss();
           }).catch(e => {
-            loading.dismiss();
+            this.loadingCtrl.dismiss();
             // this.loadingCtrl.dismiss();
             alert(e);
           })
           // this.navCtrl.pop();
         }, (err) => {
-          loading.dismiss();
+          this.loadingCtrl.dismiss();
           alert(JSON.parse(err._body).message);
         });
       }
