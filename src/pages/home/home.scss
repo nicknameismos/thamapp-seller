@@ -6,6 +6,9 @@ page-home {
   //     min-width: 60%;
   //     text-align: center;
   //   }
+  img {
+    object-fit: cover !important;
+}
   .logoimg {
     margin-top: 10px;
     margin-bottom: -15px;

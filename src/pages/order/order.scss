@@ -4,6 +4,9 @@ page-order {
   //       background-color: #558866  !important;
   //       border-bottom: 4px solid !important;
   //   }
+  img {
+    object-fit: cover !important;
+}
   #segmentOrd {
     display: block;
     overflow-x: scroll !important;

@@ -1,4 +1,7 @@
 page-notification {
+    img {
+        object-fit: cover !important;
+    }
     ion-navbar{
         ion-item{   
             background-color: transparent !important;

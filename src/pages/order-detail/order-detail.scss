@@ -1,4 +1,7 @@
 page-order-detail {
+  img {
+    object-fit: cover !important;
+}
   #pName {
     font-size: 2rem;
     line-height: normal;

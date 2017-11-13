@@ -1,4 +1,7 @@
 page-product-detail {
+  img {
+    object-fit: cover !important;
+}
   .progress-box {
     color: red !important;
     border-spacing: 1px;
