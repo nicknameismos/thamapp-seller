@@ -28,14 +28,12 @@
       </ion-refresher-content>
     </ion-refresher>
     <ion-list-product [items]="product.items" (selectedProduct)="selected($event)"></ion-list-product>
-
-    <ion-fab bottom right>
-      <button ion-fab (click)="addProductModal()">
-        <ion-icon name="add"></ion-icon>
-      </button>
-    </ion-fab>
   </div>
-
+  <ion-fab bottom right *ngIf="shop">
+    <button ion-fab (click)="addProductModal()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
   <div *ngIf="!shop">
     <ion-row>
       <ion-col col-12>
