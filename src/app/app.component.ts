@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Platform, MenuController, LoadingController, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { OneSignal } from '@ionic-native/onesignal';
 
 // import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from './../pages/login/login';
@@ -12,17 +13,18 @@ import * as firebase from 'firebase';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = TabsPage;
+  rootPage: any = TabsPage;
   user = {} as UserModel;
   private shopList: Array<any> = [];
   constructor(
-    platform: Platform, 
-    statusBar: StatusBar, 
+    platform: Platform,
+    statusBar: StatusBar,
     splashScreen: SplashScreen,
     public menuController: MenuController,
     public loadingCtrl: LoadingController,
     public events: Events,
-    public shopService: ShopService
+    public shopService: ShopService,
+    private oneSignal: OneSignal
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -32,6 +34,9 @@ export class MyApp {
     });
     this.workaroundSideMenu();
     this.configFirebase();
+    if (platform.is('cordova')) {
+      this.onSignalSetup();
+    }
   }
 
   initLoadStoreList() {
@@ -77,13 +82,37 @@ export class MyApp {
 
   configFirebase() {
     let config = {
-      apiKey: "AIzaSyActRoM7SJW0h20HTM9GrkwJICC4moOzC8",
-      authDomain: "green-vintage.firebaseapp.com",
-      databaseURL: "https://green-vintage.firebaseio.com",
-      projectId: "green-vintage",
-      storageBucket: "green-vintage.appspot.com",
-      messagingSenderId: "317596581774"
+      apiKey: "AIzaSyA-adeTrR-W9bWXK0Z41c7VlJg9mGwUoZg",
+      authDomain: "thamturakit-id.firebaseapp.com",
+      databaseURL: "https://thamturakit-id.firebaseio.com/",
+      projectId: "thamturakit-id",
+      storageBucket: "thamturakit-id.appspot.com",
+      messagingSenderId: "503984043648"
     };
     firebase.initializeApp(config);
+  }
+
+  onSignalSetup() {
+    this.oneSignal.startInit('4b62e07d-3f2d-46a0-96f1-542b2fb46bd4', '878156639989');
+
+    // this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
+
+    this.oneSignal.handleNotificationReceived().subscribe((onReceived) => {
+      // do something when notification is received
+      let notifications = window.localStorage.getItem('sellerNotification') ? JSON.parse(window.localStorage.getItem('sellerNotification')) : [];
+
+      notifications.unshift({
+        date: new Date(),
+        message: onReceived.payload.body
+      });
+
+      window.localStorage.setItem('sellerNotification', JSON.stringify(notifications));
+    });
+
+    this.oneSignal.handleNotificationOpened().subscribe(() => {
+      // do something when a notification is opened
+    });
+
+    this.oneSignal.endInit();
   }
 }

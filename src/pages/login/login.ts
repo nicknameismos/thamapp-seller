@@ -40,7 +40,7 @@ export class LoginPage {
     
           if (this.platform.is('cordova')) {
             this.oneSignal.getIds().then((data) => {
-              // this.authenService.pushNotificationUser({ id: data.userId });
+              this.authenService.pushNotificationUser({ id: data.userId });
             });
           }
     
