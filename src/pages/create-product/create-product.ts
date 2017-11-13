@@ -12,6 +12,7 @@ import {
   CurrencyModel,
   CurrencyService
 } from '@ngcommerce/core';
+import { LoadingProvider } from '../../providers/loading/loading';
 /**
  * Generated class for the CreateProductPage page.
  *
@@ -35,8 +36,6 @@ export class CreateProductPage {
   showForm: Boolean = false;
   resImg: Array<string> = [];
 
-  loading = this.loadingCtrl.create();
-
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -44,8 +43,8 @@ export class CreateProductPage {
     public categoryService: CategoryService,
     public shippingService: ShippingService,
     public currencyService: CurrencyService,
-    // public loadingCtrl: LoadingProvider,
-    public loadingCtrl: LoadingController,
+    public loadingCtrl: LoadingProvider,
+    // public loadingCtrl: LoadingController,
     public viewCtrl: ViewController
   ) {
     let shopselec = JSON.parse(window.localStorage.getItem('shop'));
@@ -65,49 +64,49 @@ export class CreateProductPage {
     this.loadCate();
   }
   loadShops() {
-    this.loading.present();
+    this.loadingCtrl.onLoading();
     this.shopService.getShopListByUser().then((data) => {
       this.shops = data;
-      this.loading.dismiss();
+      this.loadingCtrl.dismiss();
       this.loadCate();
     }, (err) => {
-      this.loading.dismiss();
+      this.loadingCtrl.dismiss();
       alert(JSON.parse(err._body).message);
     });
   }
 
   loadCate() {
-    this.loading.present();
+    this.loadingCtrl.onLoading();
     this.categoryService.getCategoryList().then((data) => {
       this.categories = data;
-      this.loading.dismiss();
+      this.loadingCtrl.dismiss();
       this.loadShipping();
     }, (err) => {
-      this.loading.dismiss();
+      this.loadingCtrl.dismiss();
       alert(JSON.parse(err._body).message);
     });
   }
 
   loadShipping() {
-    this.loading.present();
+    this.loadingCtrl.onLoading();
     this.shippingService.getShippingList().then((data) => {
       this.shippings = data;
-      this.loading.dismiss();
+      this.loadingCtrl.dismiss();
       this.loadCurrency();
     }, (err) => {
-      this.loading.dismiss();
+      this.loadingCtrl.dismiss();
       alert(JSON.parse(err._body).message);
     });
   }
 
   loadCurrency() {
-    this.loading.present();
+    this.loadingCtrl.onLoading();
     this.currencyService.getCurrencyList().then((data) => {
       this.currency = data;
       this.showForm = true;
-      this.loading.dismiss();
+      this.loadingCtrl.dismiss();
     }, (err) => {
-      this.loading.dismiss();
+      this.loadingCtrl.dismiss();
       alert(JSON.parse(err._body).message);
     });
   }

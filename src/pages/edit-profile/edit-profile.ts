@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { UserModel, AuthenService } from "@ngcommerce/core";
+import { LoadingProvider } from '../../providers/loading/loading';
 
 /**
  * Generated class for the EditProfilePage page.
@@ -17,17 +18,18 @@ import { UserModel, AuthenService } from "@ngcommerce/core";
 export class EditProfilePage {
   editProfile = {} as UserModel;
 
-  loading = this.loadingCtrl.create();
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public authenService: AuthenService,
     public alertCtrl: AlertController,
-    public loadingCtrl: LoadingController
-    // public loadingCtrl: LoadingProvider
+    // public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingProvider
   ) {
+    this.loadingCtrl.onLoading();    
     this.editProfile = JSON.parse(window.localStorage.getItem('thamappseller'));
+    this.loadingCtrl.dismiss();    
     console.log(this.editProfile);
   }
 
@@ -37,14 +39,14 @@ export class EditProfilePage {
 
   editAccount() {
     // this.editProfile
-    this.loading.present();
+    this.loadingCtrl.onLoading();
 
     this.authenService.updateUser(this.editProfile).then((resp) => {
       window.localStorage.setItem('thamappseller', JSON.stringify(resp));
       this.navCtrl.pop();
-      this.loading.dismiss();
+      this.loadingCtrl.dismiss();
     }, (error) => {
-      this.loading.dismiss();
+      this.loadingCtrl.dismiss();
       console.error(error);
     });
 

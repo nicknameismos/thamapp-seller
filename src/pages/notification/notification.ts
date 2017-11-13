@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController, Events, App, LoadingController } from 'ionic-angular';
 import { ShopModel } from '@ngcommerce/core';
+import { LoadingProvider } from '../../providers/loading/loading';
 
 /**
  * Generated class for the NotificationPage page.
@@ -17,12 +18,11 @@ import { ShopModel } from '@ngcommerce/core';
 export class NotificationPage {
   shop = {} as ShopModel;
   notifications: Array<any> = [];
-  loading = this.loadingCtrl.create();
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    // public loadingCtrl: LoadingProvider,
-    public loadingCtrl: LoadingController,
+    public loadingCtrl: LoadingProvider,
+    // public loadingCtrl: LoadingController,
     public menuController: MenuController,
     public events: Events,
     public app: App
@@ -30,9 +30,9 @@ export class NotificationPage {
   }
 
   ionViewWillEnter() {
-    this.loading.present();
+    this.loadingCtrl.onLoading();
     this.loadNoti();
-    this.loading.dismiss();
+    this.loadingCtrl.dismiss();
     // alert(this.notifications);
     this.workaroundSideMenu();
   }
