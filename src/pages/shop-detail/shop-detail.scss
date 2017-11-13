@@ -37,19 +37,32 @@ page-shop-detail {
         &.rating li {
             padding: 0px 0px !important;
             background: none;
-            color: #ffb400;
+            color: #52a97a;
             ion-icon {
                 font-size: 20px;
             }
         }
     }
+    .ion-ios-star:before {
+        content: "\f1aa" !important;
+    }
+    .ion-ios-star-outline:before {
+        content: "\f1a9" !important;
+    }
+    .ion-md-star:before {
+        content: "\f1aa" !important;
+    }
+    .ion-md-star-outline:before {
+        content: "\f1a9" !important;
+    }
     #wrap{
-        background-color: #5c926e;
+        background-color: #2A5D67;
         position: absolute;
         color: white;
         padding-left: 7px;
         height: 115px;
         width: 100%;
+        opacity: 0.9;
     }
     #btnCall{
        

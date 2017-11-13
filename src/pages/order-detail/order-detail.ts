@@ -58,10 +58,10 @@ export class OrderDetailPage {
           handler: data => {
             this.loading.present();
             this.orderService.updateItemToSent(order_id, item_id).then((data) => {
-              this.loading.dismiss();
+              this.loading.dismissAll();
               this.navCtrl.pop();
             }, (err) => {
-              this.loading.dismiss();
+              this.loading.dismissAll();
               alert(JSON.parse(err._body).message);
             });
           }
@@ -78,20 +78,20 @@ export class OrderDetailPage {
         this.loading.dismiss();
         this.navCtrl.pop();
       }, (err) => {
-        this.loading.dismiss();
+        this.loading.dismissAll();
         alert(JSON.parse(err._body).message);
       });
     } else if (item.status == "accept") {
-      this.loading.dismiss();
+      this.loading.dismissAll();
 
       this.showPrompt(item.order_id, item.item_id);
 
     } else if (item.status == "sent") {
       this.orderService.updateItemToComplete(item.order_id, item.item_id).then((data) => {
-        this.loading.dismiss();
+        this.loading.dismissAll();
         this.navCtrl.pop();
       }, (err) => {
-        this.loading.dismiss();
+        this.loading.dismissAll();
         alert(JSON.parse(err._body).message);
       })
     } else if (item.status == "return") {
@@ -103,10 +103,10 @@ export class OrderDetailPage {
   updateStatusReject(item) {
     this.loading.present();
     this.orderService.updateItemToReject(item.order_id, item.item_id).then((data) => {
-      this.loading.dismiss();
+      this.loading.dismissAll();
       this.navCtrl.pop();
     }, (err) => {
-      this.loading.dismiss();
+      this.loading.dismissAll();
       alert(JSON.parse(err._body).message);
     })
 

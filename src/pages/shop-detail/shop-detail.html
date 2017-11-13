@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="header-cs">
     <ion-title>Shop Detail</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="updateShop(shop)">
@@ -19,10 +19,9 @@
       </button>
     </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content>
-  <ion-detail-shop *ngIf="shop"  [item]="shop" [isReview]="false"></ion-detail-shop>
+  <ion-detail-shop *ngIf="shop" [item]="shop" [isReview]="false"></ion-detail-shop>
 </ion-content>

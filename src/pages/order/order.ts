@@ -85,10 +85,10 @@ export class OrderPage {
       console.log(data);
       this.order = data;
       this.flag = true;
-      this.loading.dismiss();
+      this.loading.dismissAll();
     }, (err) => {
       this.flag = true;
-      this.loading.dismiss();
+      this.loading.dismissAll();
       // alert(JSON.parse(err._body).message);
       this.app.getRootNav().setRoot(LoginPage);
     });
