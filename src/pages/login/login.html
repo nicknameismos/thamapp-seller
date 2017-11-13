@@ -6,14 +6,14 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="header-cs">
     <ion-title>Login</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <ion-list>
     <ion-item>
       <ion-label floating>Username</ion-label>
@@ -28,15 +28,15 @@
 
   <ion-row>
     <ion-col>
-      <button ion-button block (click)="login()" block>Login</button>
+      <button ion-button block color="header-cs" (click)="login()" block>Login</button>
     </ion-col>
     <ion-col>
-      <button ion-button block (click)="register()" block>Register</button>
+      <button ion-button block color="danger" (click)="register()" block>Register</button>
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col>
-      <button ion-button block (click)="loginfb()" block>login with Facebook</button>
+      <button ion-button block color="btn-facebook" (click)="loginfb()" block>login with Facebook</button>
     </ion-col>
   </ion-row>
 </ion-content>
