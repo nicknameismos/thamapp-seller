@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { OrderService } from "@ngcommerce/core";
+import { LoadingProvider } from '../../providers/loading/loading';
 
 /**
  * Generated class for the OrderDetailPage page.
@@ -16,19 +17,17 @@ import { OrderService } from "@ngcommerce/core";
 })
 export class OrderDetailPage {
   items;
-
-  loading = this.loadingCtrl.create();
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public orderService: OrderService,
     public alertCtrl: AlertController,
-    public loadingCtrl: LoadingController
-    // public loadingCtrl: LoadingProvider
+    // public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingProvider
   ) {
-    this.loading.present();
+    this.loadingCtrl.onLoading();
     this.items = this.navParams.data;
-    this.loading.dismiss();
+    this.loadingCtrl.dismiss();
     console.log(this.items);
   }
 
@@ -56,12 +55,12 @@ export class OrderDetailPage {
         {
           text: 'Submit',
           handler: data => {
-            this.loading.present();
+            this.loadingCtrl.onLoading();
             this.orderService.updateItemToSent(order_id, item_id).then((data) => {
-              this.loading.dismissAll();
+              this.loadingCtrl.dismissAll();
               this.navCtrl.pop();
             }, (err) => {
-              this.loading.dismissAll();
+              this.loadingCtrl.dismissAll();
               alert(JSON.parse(err._body).message);
             });
           }
@@ -72,26 +71,26 @@ export class OrderDetailPage {
   }
 
   updateStatus(item) {
-    this.loading.present();
+    this.loadingCtrl.onLoading();
     if (item.status == "waiting") {
       this.orderService.updateItemToAccept(item.order_id, item.item_id).then((data) => {
-        this.loading.dismiss();
+        this.loadingCtrl.dismiss();
         this.navCtrl.pop();
       }, (err) => {
-        this.loading.dismissAll();
+        this.loadingCtrl.dismissAll();
         alert(JSON.parse(err._body).message);
       });
     } else if (item.status == "accept") {
-      this.loading.dismissAll();
+      this.loadingCtrl.dismissAll();
 
       this.showPrompt(item.order_id, item.item_id);
 
     } else if (item.status == "sent") {
       this.orderService.updateItemToComplete(item.order_id, item.item_id).then((data) => {
-        this.loading.dismissAll();
+        this.loadingCtrl.dismissAll();
         this.navCtrl.pop();
       }, (err) => {
-        this.loading.dismissAll();
+        this.loadingCtrl.dismissAll();
         alert(JSON.parse(err._body).message);
       })
     } else if (item.status == "return") {
@@ -101,12 +100,12 @@ export class OrderDetailPage {
   }
 
   updateStatusReject(item) {
-    this.loading.present();
+    this.loadingCtrl.onLoading();
     this.orderService.updateItemToReject(item.order_id, item.item_id).then((data) => {
-      this.loading.dismissAll();
+      this.loadingCtrl.dismissAll();
       this.navCtrl.pop();
     }, (err) => {
-      this.loading.dismissAll();
+      this.loadingCtrl.dismissAll();
       alert(JSON.parse(err._body).message);
     })
 

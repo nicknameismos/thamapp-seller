@@ -3,6 +3,7 @@ import { LoginPage } from './../login/login';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController, App, Events, LoadingController } from 'ionic-angular';
 import { OrderService, ItemByOrderByShopModel, ShopModel } from "@ngcommerce/core";
+import { LoadingProvider } from '../../providers/loading/loading';
 
 /**
  * Generated class for the OrderPage page.
@@ -41,17 +42,17 @@ export class OrderPage {
   shop = {} as ShopModel;
   flag = true;
 
-  loading = this.loadingCtrl.create();
+  // loading = this.loadingCtrl.create();
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public orderService: OrderService,
-    // public loadingCtrl: LoadingProvider,
+    public loadingCtrl: LoadingProvider,
     public menuController: MenuController,
     public app: App,
     public events: Events,
-    public loadingCtrl: LoadingController
+    // public loadingCtrl: LoadingController
   ) {
     this.channel = 1;
     events.subscribe('notification:received', () => {
@@ -80,15 +81,15 @@ export class OrderPage {
   }
 
   getOrder(shop) {
-    this.loading.present();
+    this.loadingCtrl.onLoading();
     this.orderService.getOrderByShop(shop._id).then((data) => {
       console.log(data);
       this.order = data;
       this.flag = true;
-      this.loading.dismissAll();
+      this.loadingCtrl.dismissAll();
     }, (err) => {
       this.flag = true;
-      this.loading.dismissAll();
+      this.loadingCtrl.dismissAll();
       // alert(JSON.parse(err._body).message);
       this.app.getRootNav().setRoot(LoginPage);
     });

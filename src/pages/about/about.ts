@@ -4,6 +4,7 @@ import { NavController, App, NavParams, ModalController, MenuController, Loading
 import { ShopModel } from '@ngcommerce/core';
 import { LoginPage } from '../login/login';
 import { ListshopPage } from '../listshop/listshop';
+import { LoadingProvider } from '../../providers/loading/loading';
 
 @Component({
   selector: 'page-about',
@@ -18,20 +19,19 @@ export class AboutPage {
     public navParams: NavParams, 
     public modalControl: ModalController, 
     public menuController: MenuController, 
-    public loadingCtrl: LoadingController, 
+    public loadingCtrl: LoadingProvider, 
     public events: Events
   ) {
     this.user = JSON.parse(window.localStorage.getItem('thamappseller'));    
   }
   ionViewWillEnter() {
-    let loading = this.loadingCtrl.create();
-    loading.present();
+    this.loadingCtrl.onLoading();
     this.workaroundSideMenu();
     let shop = JSON.parse(window.localStorage.getItem("shop"));
     this.user = JSON.parse(window.localStorage.getItem('thamappseller'));
     this.shop = shop;
     console.log('ionViewDidLoad AccountPage');
-    loading.dismiss();
+    this.loadingCtrl.dismiss();
   }
 
   logout(e) {

@@ -4,6 +4,7 @@ import { LoadingController, Events, App, ModalController, AlertController, MenuC
 import { ProductListModel, ProductService, ShopModel } from "@ngcommerce/core";
 import { LoginPage } from '../login/login';
 import { ProductDetailPage } from '../product-detail/product-detail';
+import { LoadingProvider } from '../../providers/loading/loading';
 
 /**
  * Generated class for the ProductPage page.
@@ -24,8 +25,6 @@ export class ProductPage {
   chkformimg = true;
   flag = true;
 
-  loading = this.loadingCtrl.create();
-
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -33,8 +32,8 @@ export class ProductPage {
     public menuController: MenuController,
     public alertCtrl: AlertController,
     public modalCtrl: ModalController,
-    // public loadingCtrl: LoadingProvider,
-    public loadingCtrl: LoadingController,
+    public loadingCtrl: LoadingProvider,
+    // public loadingCtrl: LoadingController,
     public app: App,
     public events: Events
   ) {
@@ -64,15 +63,15 @@ export class ProductPage {
 
   getProduct(shop) {
     this.product = {} as ProductListModel;
-    this.loading.present();
+    this.loadingCtrl.onLoading();
     this.productService.getProductListByShop(shop._id).then(data => {
       this.flag = true;
-      this.loading.dismiss();
+      this.loadingCtrl.dismiss();
       console.log(data);
       this.product = data;
     }).catch(e => {
       this.flag = true;
-      this.loading.dismiss();
+      this.loadingCtrl.dismiss();
       // alert(e);
       this.app.getRootNav().setRoot(LoginPage);
     })
@@ -85,12 +84,12 @@ export class ProductPage {
     let productModal = this.modalCtrl.create(CreateProductPage, { 'keys': this.chkformimg });
     productModal.onDidDismiss(data => {
       if (data && data.name && data.name !== undefined) {
-        this.loading.present();
+        this.loadingCtrl.onLoading();
         this.productService.createProduct(data).then((resq) => {
-          this.loading.dismiss();
+          this.loadingCtrl.dismiss();
           this.getProduct(this.shop);
         }, (err) => {
-          this.loading.dismiss();
+          this.loadingCtrl.dismiss();
           alert(JSON.parse(err._body).message);
         });
       }

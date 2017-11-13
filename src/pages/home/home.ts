@@ -44,7 +44,6 @@ export class HomePage {
 
   ionViewWillEnter() {
     console.log('ionViewDidLoad HomePage');
-
     let shop = JSON.parse(window.localStorage.getItem("shop"));
     this.shop = shop;
     if (this.shop) {
