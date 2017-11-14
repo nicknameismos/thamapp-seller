@@ -32,6 +32,7 @@ import { ProductDetailPage } from '../pages/product-detail/product-detail';
 import { ListshopPage } from '../pages/listshop/listshop';
 import { ShopDetailPage } from '../pages/shop-detail/shop-detail';
 import { LoadingProvider } from '../providers/loading/loading';
+import { MomentPipe } from "../pipes/moment/moment";
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { LoadingProvider } from '../providers/loading/loading';
     IonSegmentOrderComponent,
     IonDetailOrderComponent,
     IonOrdersComponent,
-    OrderDetailPage
+    OrderDetailPage,
+    MomentPipe
   ],
   imports: [
     BrowserModule,
