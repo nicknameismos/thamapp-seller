@@ -4,6 +4,7 @@ import { RegisterPage } from '../register/register';
 import { AuthenService, SignupModel } from "@ngcommerce/core";
 import { OneSignal } from '@ionic-native/onesignal';
 import { TabsPage } from '../tabs/tabs';
+import { LoadingProvider } from '../../providers/loading/loading';
 /**
  * Generated class for the LoginPage page.
  *
@@ -23,7 +24,8 @@ export class LoginPage {
     public navParams: NavParams,
     public authenService: AuthenService,
     public oneSignal: OneSignal,
-    public platform: Platform
+    public platform: Platform,
+    public loadingCtrl : LoadingProvider
   ) {
   }
 
@@ -34,7 +36,7 @@ export class LoginPage {
     
         // window.localStorage.removeItem('shop');
         // window.localStorage.removeItem('jjuserbuyer');
-        // this.loadingCtrl.onLoading();
+        this.loadingCtrl.onLoading();
         this.authenService.signIn(this.credential).then(data => {
           window.localStorage.setItem('thamappseller', JSON.stringify(data));
     
@@ -44,14 +46,14 @@ export class LoginPage {
             });
           }
     
-          // this.loadingCtrl.dismiss();
+          this.loadingCtrl.dismiss();
           this.navCtrl.push(TabsPage);      
           // this.viewCtrl.dismiss();
           
     
           // alert(JSON.stringify(data));
         }).catch(e => {
-          // this.loadingCtrl.dismiss();
+          this.loadingCtrl.dismiss();
           alert(JSON.parse(e._body).message);
         });
       }

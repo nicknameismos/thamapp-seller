@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthenService } from "@ngcommerce/core";
+import { LoadingProvider } from '../../providers/loading/loading';
 
 /**
  * Generated class for the RegisterPage page.
@@ -16,7 +17,12 @@ import { AuthenService } from "@ngcommerce/core";
 })
 export class RegisterPage {
   user: any = {};
-  constructor(public navCtrl: NavController, public navParams: NavParams, public service: AuthenService) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public service: AuthenService,
+    public loadingCtrl: LoadingProvider
+  ) {
   }
 
   ionViewDidLoad() {
@@ -28,13 +34,13 @@ export class RegisterPage {
     newUser.lastName = this.user.last_name;
 
     // alert(JSON.stringify(newUser));
-    // this.loadingCtrl.onLoading();
+    this.loadingCtrl.onLoading();
     this.service.signUp(newUser).then(data => {
       // alert(JSON.stringify(data));
-      // this.loadingCtrl.dismiss();
+      this.loadingCtrl.dismiss();
       this.navCtrl.pop();
     }).catch(e => {
-      // this.loadingCtrl.dismiss();
+      this.loadingCtrl.dismiss();
       alert("<pre>" + JSON.stringify(e));
     });
   }
