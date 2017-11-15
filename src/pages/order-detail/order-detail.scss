@@ -1,7 +1,14 @@
 page-order-detail {
+  ion-content {
+    height: 110%;
+    margin-top: -56px;
+  }
+  .back-button {
+    color: rgb(194, 194, 194);
+  }
   img {
     object-fit: cover !important;
-}
+  }
   #pName {
     font-size: 2rem;
     line-height: normal;
