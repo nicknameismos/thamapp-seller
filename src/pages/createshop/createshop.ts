@@ -35,6 +35,11 @@ export class CreateshopPage {
   }
   resImageEvent(e) {
     this.resImg = e[0] ? e[0] : "";
+    if(this.resImg){
+      this.item.image = this.resImg;
+    }else{
+      this.item.image = '';
+    }
   }
   createShop(data) {
     if (!data.name) {
