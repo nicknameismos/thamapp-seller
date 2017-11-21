@@ -31,8 +31,8 @@ export class EditProfilePage {
     this.loadingCtrl.onLoading();
     this.editProfile = JSON.parse(window.localStorage.getItem('thamappseller'));
     this.pImages = this.editProfile.profileImageURL ? [this.editProfile.profileImageURL] : [];
+    console.log(this.pImages);
     this.loadingCtrl.dismiss();
-    console.log(this.editProfile);
   }
 
   ionViewDidLoad() {
@@ -40,12 +40,18 @@ export class EditProfilePage {
   }
   resImageEvent(e) {
     this.resImg = e[0] ? e[0] : "";
+    if(this.resImg){
+      this.editProfile.profileImageURL = this.resImg;
+    }else{
+      this.editProfile.profileImageURL = '';
+    }
     // this.resImg = './assets/image/noimage.png';
   }
   editAccount() {
     // this.editProfile
     this.loadingCtrl.onLoading();
-    this.editProfile.profileImageURL = this.resImg;
+    this.editProfile.profileImageURL = this.editProfile.profileImageURL;
+    console.log(this.editProfile);
     this.authenService.updateUser(this.editProfile).then((resp) => {
       window.localStorage.setItem('thamappseller', JSON.stringify(resp));
       this.navCtrl.pop();
@@ -54,7 +60,6 @@ export class EditProfilePage {
       this.loadingCtrl.dismiss();
       console.error(error);
     });
-
   }
   changePassword() {
     let prompt = this.alertCtrl.create({
