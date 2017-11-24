@@ -18,7 +18,7 @@ import { LoginPage } from './../pages/login/login';
 import { RegisterPage } from './../pages/register/register';
 import { OneSignal } from '@ionic-native/onesignal';
 
-import { EcommerceCoreModule, IonSegmentOrderComponent, IonListOrderComponent, IonOrdersComponent, IonDetailOrderComponent, IonFormProfileComponent, IonListProductComponent, IonDetailProductComponent, IonFormProductComponent, IonListShopComponent, IonFormShopComponent, IonUploadImageComponent, IonDetailShopComponent } from "@ngcommerce/core";
+import { EcommerceCoreModule, IonSegmentOrderComponent, IonListOrderComponent, IonOrdersComponent, IonDetailOrderComponent, IonFormProfileComponent, IonListProductComponent, IonFormProductComponent, IonListShopComponent, IonFormShopComponent, IonUploadImageComponent, IonDetailShopComponent } from "@ngcommerce/core";
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -33,7 +33,7 @@ import { ListshopPage } from '../pages/listshop/listshop';
 import { ShopDetailPage } from '../pages/shop-detail/shop-detail';
 import { LoadingProvider } from '../providers/loading/loading';
 import { MomentPipe } from "../pipes/moment/moment";
-
+import { IonDetailProductComponent } from "../components/ion-detail-product/ion-detail-product";
 
 @NgModule({
   declarations: [

@@ -99,8 +99,8 @@
             <ion-item>
               <ion-icon item-start name="ios-cash-outline"></ion-icon>
               <ion-label></ion-label>
-              <ion-select [(ngModel)]="e.shippings" multiple="true" id="maxWidth">
-                <ion-option *ngFor="let items of shippings" [value]="items">{{items.name}}</ion-option>
+              <ion-select [(ngModel)]="shippingtype" multiple="true" id="maxWidth">
+                <ion-option *ngFor="let items of ship" [value]="items">{{items.name}}</ion-option>
               </ion-select>
             </ion-item>
           </ion-row>
@@ -108,7 +108,7 @@
       </ion-row>
     </ion-grid>
 
-    <ion-grid *ngIf="e.shippings">
+    <ion-grid *ngIf="shippingtype.length > 0">
       <ion-row>
         <ion-col text-left>
           <ion-item-divider color="light" no-lines>
@@ -116,7 +116,7 @@
           </ion-item-divider>
         </ion-col>
       </ion-row>
-      <ion-row *ngFor="let items of e.shippings">
+      <ion-row *ngFor="let items of shippingtype">
         <ion-col col-6>
           <ion-item>
             {{items.name}}
@@ -124,7 +124,7 @@
         </ion-col>
         <ion-col col-6>
           <ion-item>
-            <ion-input type="number" [(ngModel)]="priceTransfer"></ion-input>
+            <ion-input type="number" [(ngModel)]="items.shippingprice"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>

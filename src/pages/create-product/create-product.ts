@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, LoadingController } from 'ionic-angular';
+
 import {
   CategoryModel,
   CategoryService,
-  ProductModel,
   ShippingModel,
   ShippingService,
   ShopListModel,
@@ -13,6 +13,7 @@ import {
   CurrencyService
 } from '@ngcommerce/core';
 import { LoadingProvider } from '../../providers/loading/loading';
+import { ProductModel } from './create-product.model';
 /**
  * Generated class for the CreateProductPage page.
  *
@@ -29,13 +30,14 @@ export class CreateProductPage {
   pImages: Array<string> = [];
   shops: Array<ShopModel> = [];
   categories: Array<CategoryModel>;
-  shippings: Array<ShippingModel>;
+  ship: Array<ShippingModel>;
   currency: Array<CurrencyModel> = [];
-  e = {} as ProductModel;
+  e: ProductModel = new ProductModel();
   chkformimg: Boolean = false;
   showForm: Boolean = false;
   resImg: Array<string> = [];
-  priceTransfer: Number = 0;
+  shippingtype = [];
+  shippingprice =0;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -90,7 +92,7 @@ export class CreateProductPage {
   loadShipping() {
     this.loadingCtrl.onLoading();
     this.shippingService.getShippingList().then((data) => {
-      this.shippings = data;
+      this.ship = data;
       this.loadingCtrl.dismiss();
       this.loadCurrency();
     }, (err) => {
@@ -164,6 +166,7 @@ export class CreateProductPage {
       this.e.percentofdiscount = null;
     }
   }
+
   discountpercent() {
     if (this.e.price > 0) {
       if (this.e.percentofdiscount > 0) {
@@ -264,26 +267,35 @@ export class CreateProductPage {
       }
     }
   }
-  onClickAddProd(e) {
-    if (!e.name) {
+  onClickAddProd(el) {
+    el.shippings = [];
+    this.shippingtype.forEach(function(s){
+      el.shippings.push({
+        shippingtype: s,
+        shippingprice: s.shippingprice
+      });
+    });
+    // e.shippings.shippingtype = this.shippingtype;
+    console.log(el);
+    if (!el.name) {
       alert('Please Enter Your Name!');
       return;
-    } else if (!e.detail) {
+    } else if (!el.detail) {
       alert('Please Enter Your Detail!');
       return;
-    } else if (!e.price) {
+    } else if (!el.price) {
       alert('Please Enter Your Price!');
       return;
-    } else if (!e.currency) {
+    } else if (!el.currency) {
       alert('Please Enter Your Currency!');
       return;
-    } else if (!e.shippings) {
+    } else if (!el.shippings) {
       alert('Please Enter Your Shippings!');
       return;
-    } else if (!e.categories) {
+    } else if (!el.categories) {
       alert('Please Enter Your Categories!');
       return;
-    } else if (!e.shop) {
+    } else if (!el.shop) {
       alert('Please Enter Your Shop!');
       return;
     } else if (this.pImages.length === 0) {
@@ -291,11 +303,11 @@ export class CreateProductPage {
       return;
     }
     if (this.pImages.length > 0) {
-      e.images = this.pImages;
-      this.viewCtrl.dismiss(e);
+      el.images = this.pImages;
+      this.viewCtrl.dismiss(el);
     } else {
-      e.images = this.resImg;
-      this.viewCtrl.dismiss(e);
+      el.images = this.resImg;
+      this.viewCtrl.dismiss(el);
     }
     // this.itemClicked.emit(item);
   }

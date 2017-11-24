@@ -83,6 +83,7 @@ export class ProductPage {
   addProductModal() {
     let productModal = this.modalCtrl.create(CreateProductPage, { 'keys': this.chkformimg });
     productModal.onDidDismiss(data => {
+      alert(JSON.stringify(data));
       if (data && data.name && data.name !== undefined) {
         this.loadingCtrl.onLoading();
         this.productService.createProduct(data).then((resq) => {
