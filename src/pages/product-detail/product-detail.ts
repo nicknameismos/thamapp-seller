@@ -99,7 +99,7 @@ export class ProductDetailPage {
       productBind.categories.push(element._id);
     });
     e.shippings.forEach(element => {
-      productBind.shippings.push(element._id);
+      productBind.shippings.push(element);
     });
     console.log(productBind);
     let productModal = this.modalCtrl.create(CreateProductPage, productBind);

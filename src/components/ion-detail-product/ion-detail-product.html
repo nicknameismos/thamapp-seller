@@ -50,7 +50,8 @@
   </ion-row>
   <ion-list *ngIf="item.shippings && item.shippings.length > 0">
       <ion-item-divider *ngFor="let shipping of item.shippings">
-          <ion-icon item-start name="ios-archive-outline"></ion-icon> {{shipping.name}}
+          <ion-icon item-start name="ios-archive-outline"></ion-icon> {{shipping.shippingtype.name}}
+          <span item-end>{{shipping.shippingprice}} {{item.currency}} </span>
       </ion-item-divider>
       <ion-item-divider *ngIf="item.cod">
           <ion-icon item-start name="ios-cash-outline"></ion-icon> สามารถชำระเงินปลายทางได้

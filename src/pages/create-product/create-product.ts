@@ -13,7 +13,7 @@ import {
   CurrencyService
 } from '@ngcommerce/core';
 import { LoadingProvider } from '../../providers/loading/loading';
-import { ProductModel } from './create-product.model';
+import { ProductModel, Shipping } from './create-product.model';
 /**
  * Generated class for the CreateProductPage page.
  *
@@ -37,7 +37,7 @@ export class CreateProductPage {
   showForm: Boolean = false;
   resImg: Array<string> = [];
   shippingtype = [];
-  shippingprice =0;
+  shippingprice = 0;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -59,6 +59,23 @@ export class CreateProductPage {
     this.e.price = this.e.price ? this.e.price : 0;
     this.e.promotionprice = this.e.promotionprice ? this.e.promotionprice : 0;
     this.e.percentofdiscount = this.e.percentofdiscount ? this.e.percentofdiscount : 0;
+
+    // this.navParams.data.shippings.forEach(element => {
+    //   element.shippingtype = element.shippingtype ? element.shippingtype : {};
+    //   element.shippingtype.shippingprice = element.shippingprice;
+    //   this.shippingtype.push(element.shippingtype)
+    // });
+    // this.shippingprice = this.navParams.data.shippings.shippingprice;
+    if (this.navParams.data.shippings) {
+      this.navParams.data.shippings.forEach(element => {
+        element.shippingtype = element.shippingtype ? element.shippingtype : {};
+        element.shippingtype.shippingprice = element.shippingprice;
+        element.shippingtype.user = null;
+        this.shippingtype.push(element.shippingtype)
+      });
+    }
+    console.log(this.shippingtype);
+
   }
 
   ionViewDidLoad() {
@@ -269,14 +286,13 @@ export class CreateProductPage {
   }
   onClickAddProd(el) {
     el.shippings = [];
-    this.shippingtype.forEach(function(s){
+    this.shippingtype.forEach(function (s) {
       el.shippings.push({
         shippingtype: s,
         shippingprice: s.shippingprice
       });
     });
     // e.shippings.shippingtype = this.shippingtype;
-    console.log(el);
     if (!el.name) {
       alert('Please Enter Your Name!');
       return;
