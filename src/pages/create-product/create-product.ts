@@ -35,7 +35,7 @@ export class CreateProductPage {
   chkformimg: Boolean = false;
   showForm: Boolean = false;
   resImg: Array<string> = [];
-
+  priceTransfer: Number = 0;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
