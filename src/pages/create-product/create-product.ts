@@ -51,8 +51,9 @@ export class CreateProductPage {
   ) {
     let shopselec = JSON.parse(window.localStorage.getItem('shop'));
     this.shops = [shopselec];
-
+    // if (this.navParams.data) {
     this.e = this.navParams.data;
+    // }
     this.pImages = this.e.images ? JSON.parse(JSON.stringify(this.e.images)) : [];
     this.e.shop = shopselec._id;
     this.chkformimg = this.navParams.get('keys');
@@ -66,14 +67,6 @@ export class CreateProductPage {
     //   this.shippingtype.push(element.shippingtype)
     // });
     // this.shippingprice = this.navParams.data.shippings.shippingprice;
-    if (this.navParams.data.shippings) {
-      this.navParams.data.shippings.forEach(element => {
-        element.shippingtype = element.shippingtype ? element.shippingtype : {};
-        element.shippingtype.shippingprice = element.shippingprice;
-        element.shippingtype.user = null;
-        this.shippingtype.push(element.shippingtype)
-      });
-    }
     console.log(this.shippingtype);
 
   }
@@ -110,6 +103,28 @@ export class CreateProductPage {
     this.loadingCtrl.onLoading();
     this.shippingService.getShippingList().then((data) => {
       this.ship = data;
+      if (this.navParams.data && this.navParams.data.shippings && this.navParams.data.shippings.length > 0) {
+        console.log(this.navParams.data.shippings);
+        this.navParams.data.shippings.forEach(element => {
+          this.ship.forEach(itm => {
+            if (element.shippingtype._id.toString() === itm._id.toString()) {
+              // element.shippingtype.user = null;
+              this.shippingtype.push(itm)
+            }
+          });
+
+        });
+
+        this.navParams.data.shippings.forEach(element => {
+          this.shippingtype.forEach(itm => {
+            if (element.shippingtype._id.toString() === itm._id.toString()) {
+              itm.shippingprice = element.shippingprice;
+            }
+          });
+
+        });
+      }
+
       this.loadingCtrl.dismiss();
       this.loadCurrency();
     }, (err) => {
